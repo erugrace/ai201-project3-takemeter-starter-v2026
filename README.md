@@ -83,34 +83,43 @@ These observations will help me design clearer classification labels and decisio
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### statement
 
 **Definition:**
-
+A comment whose main purpose is to make a claim, express a judgment or recommendation, or describe a current or past situation.
 **Example 1:**
->
-
+>Nuggets way too low
 **Example 2:**
->
+>He's focused and has been practicing his shot all summer.
 
-### `label_two`
+### reaction
 
 **Definition:**
+A comment whose main purpose is to express an immediate feeling, such as excitement, frustration, surprise, or amusement.
 
 **Example 1:**
->
+>Fantastic
 
 **Example 2:**
->
+>Fuck I just wanna see a healthy Steph for another season man"
+
+### speculation
+
+**Definition:**
+A comment whose main purpose is to predict an uncertain future event or explore a hypothetical situation.
+**Example 1:**
+>Lamelo ball will guide the wolves to the promised land"
+
+**Example 2:**
+>Got me thinking, if Bronny had a kid this year, would LeBron be the first active NBA grandpa?"
+
 
 ### The hardest boundary
 
 **Which two labels:**
-
+Statement vs. Speculation 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
-
+When a comment expresses an opinion about what someone should do, I will classify it as statement. However, if the comment predicts what might happen in the future or discusses a hypothetical situation, I will classify it as speculation, even if it contains a personal opinion.
 
 
 ---
@@ -121,7 +130,7 @@ These observations will help me design clearer classification labels and decisio
      cases. -->
 
 **Where the posts came from:**
-
+n
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
 
