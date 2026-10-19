@@ -18,6 +18,38 @@ examples of it"*. A reason that could be attached to any project does not.
 > Missing your own targets next unit costs you nothing. Setting a target so
 > easy you can't miss it does.
 
+
+### Criterion 1: Overall Accuracy
+
+The model should achieve at least 70% accuracy on the held-out test set.
+
+**Reason:** I chose 70% because some Reddit comments can be complicated or ambiguous. A comment might fit more than one label, making it difficult for the model to classify correctly. I believe 70% is a reasonable target that allows for some mistakes while still showing that the model has learned useful patterns.
+
+### Criterion 2: Per-Label Performance
+
+Each label (`statement`, `reaction`, and `speculation`) should achieve an F1 score of at least 0.60 on the held-out test set.
+
+**Reason:** I chose 0.60 because some comments might be difficult to classify correctly, especially statements and speculations, which can be similar. Sometimes, a comment might express an opinion while also predicting something. I think 0.60 is a reasonable minimum for each label, even when these overlaps make classification difficult.
+
+### Criterion 3: Dataset Balance
+
+No single label should represent more than 70% of the labeled dataset.
+
+**Reason:** I chose 70% because some topics in r/nba might naturally have more statements than reactions or speculations. I want to allow for these differences while making sure that the dataset still contains examples of all three labels.
+
+### Criterion 4: Human Labeling Consistency
+
+Two people independently labeling the same 30 Reddit comments should agree on at least 80% of the labels.
+
+**Reason:** I chose 80% because even though some comments can fit more than one category, I want my definitions to be clear enough for different people to agree on most of the labels. This would show that my categories are consistent and understandable.
+
+### Criterion 5: Prediction Confidence
+
+Among predictions where the model reports 80% confidence or higher, at least 80% should be correct on the held-out test set.
+
+Reason: I chose 80% because I want the model's confidence to reflect how reliable its predictions are. If the model is highly confident about a label, I expect it to be correct most of the time. This would help determine how much its predictions can be trusted.
+
+If there are no predictions with at least 80% confidence, I will report that there were not enough qualifying predictions to evaluate this criterion.
 ---
 
 ## Pick numbers you can defend
