@@ -46,6 +46,35 @@
 
 ---
 
+## Milestone 1: Community Exploration
+
+### Selected Community
+**r/nba — Reddit's NBA Community**
+
+I chose r/nba because it is an active community where people discuss basketball games, players, team performances, and other NBA-related topics.
+
+For this project, I will focus on Reddit comments rather than the main posts because comments contain different forms of communication, including opinions, reactions, predictions, and suggestions.
+
+### Observations
+
+After reviewing 27 comments from different basketball discussions, I noticed several patterns:
+
+1. **Opinions and judgments:** Many commenters express personal opinions about players, teams, and rankings. Some provide reasons for their judgments, while others simply state what they believe.
+
+2. **Emotional reactions:** Some comments mainly express excitement, frustration, disappointment, surprise, or humor rather than making an argument.
+
+3. **Predictions and speculation:** Some commenters discuss what they believe might happen in future games, seasons, or players' careers.
+
+4. **Suggestions and questions:** Some comments propose ideas or actions, while others ask questions or raise hypothetical situations.
+
+### Initial Findings
+
+One challenge I noticed was that some comments could fit more than one category. For example, a prediction might also express an opinion, and a suggestion might include an emotional reaction.
+
+Another observation was that questions do not always seek information. Some commenters use questions to criticize or challenge another person's argument.
+
+These observations will help me design clearer classification labels and decision rules in Milestone 2.
+
 ## Label Taxonomy
 
 <!-- Each label: a one-sentence definition and two real examples from your
