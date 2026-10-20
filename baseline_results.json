@@ -1,0 +1,184 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": false,
+  "used_definitions": true,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.5666666666666667,
+    "f1_macro": 0.24113475177304963,
+    "per_label": {
+      "reaction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      },
+      "speculation": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 7
+      },
+      "statement": {
+        "precision": 0.5666666666666667,
+        "recall": 1.0,
+        "f1": 0.7234042553191489,
+        "support": 17
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "Lmaaaooo",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "The penalty for unsportsmanlike conduct should include a 30 second interpretive dance describing how sorry they are for the offense, performed at center court.",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "We\u2019re winning 4 games this season! WOOOOO",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "You have no idea how amazing it feels to have other teams' fans talk about our team like that after so many years of being a joke.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Pretty sure he will pass Kobe with how things are going.",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "Chris Finch is the best coach in franchise history. Insane playoff demon",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Dame Lillard might be good at this whole basketball thing",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "This was a 30 point game that was not as close as the score implies",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Please, Knicks... You're our only hope. - every fanbase that isn't OKC in a few weeks ",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "Most played 82 games back in the day, it was just much easier to do",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "This was a much more impressive game than his last regular season game.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "I was losing my fucking mind at that shit",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "This is literally our good ole days",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "I genuinely believe the cpoy should be the Kyrie clutch player of the year when he retires",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "my god. We may actually pull it off.",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "it\u2019s actually for the best that this wasn\u2019t in NYC",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "This shit is really fucking funny.",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "LeBron is the greatest basketball player of all time",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Luka has legit help this year. Blessed time.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Wilt is such a beast.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "This is why I'm BLOWN away that MJ has a higher career PPG average. Even as Wilt declined later.",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "Pierce needs a shout on the 08 team. He may not have had the rep coming in, but he took on some of the toughest wing match ups every game and did pretty damn well with it",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "KD had a hot start but jfc that 9 TOs dude lol.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "I\u2019m still at the game. Can confirm this sucks.",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "Dude never gave up, he just plain refused to accept \u201cno\u201d under any circumstances.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "I think Kobe would've been proud of him",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "It\u2019s too bad the ego split him and Bron. What a fun duo. Excited to see Kyrie on the biggest stage again",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Elgin Baylor is so underrated",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Imagine Harden beating that record",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "Damn who would\u2019ve thought that the Lakers\u2019 third option could handle being first option.",
+      "gold": "statement",
+      "predicted": "statement"
+    }
+  ]
+}
