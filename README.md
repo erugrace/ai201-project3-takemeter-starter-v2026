@@ -231,22 +231,55 @@ The model completed three epochs and achieved the following results on the held-
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
-| Measure | Baseline | Trained | Difference |
-|---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Measure | Baseline |
+|---|---|
+| Overall accuracy | 0.567 |
+| Macro F1 | 0.399 |
+| F1 — `reaction` | 0.000 |
+| F1 — `speculation` | 0.500 |
+| F1 — `statement` | 0.698 |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
+
+I predict my trained model will beat the baseline most on statement label, because a lot more data appeared as statements.
+
+| Measure | Baseline | Trained | Difference |
+|---|---|---|---|
+| Overall accuracy | 0.567 | 0.533 | -0.033 |
+| Macro F1 | 0.399 | 0.232 | -0.167 |
+| F1 — `reaction` | 0.000 | 0.000 | +0.000 |
+| F1 — `speculation` | 0.500 | 0.000 | -0.500 |
+| F1 — `statement` | 0.698 | 0.696 | -0.002 |
+
+My prediction didn't hold up. 
+
 
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 
 
+
+### What my definitions were worth
+
+I ran the baseline twice on the same 30 held-out posts: once with my label definitions (`label_definitions.txt`) and once with only the bare label names. The baseline reported above is the run **with definitions** (`baseline_results.json`). The bare-names run is saved in `baseline_bare_names.json`.
+
+| Measure | Bare label names | With my definitions | Difference |
+|---|---|---|---|
+| Overall accuracy | 0.567 | 0.567 | 0.000 |
+| Macro F1 | 0.403 | 0.399 | −0.004 |
+| F1 — `reaction` | 0.522 | 0.000 | −0.522 |
+| F1 — `speculation` | 0.000 | 0.500 | +0.500 |
+| F1 — `statement` | 0.688 | 0.698 | +0.010 |
+
+Overall, my definitions were worth **0 points of accuracy**. Both runs got 17 of 30 posts right. However, the definitions changed *which* posts were right:
+
+- **With bare names**, the model found 6 of the 9 `reaction` posts but none of the 5 `speculation` posts.
+- **With my definitions**, it found 2 of the 5 `speculation` posts but none of the `reaction` posts. It labelled almost everything `statement` (15 of 16 real statements were caught, but many reactions were pulled in too).
+
+My `speculation` definition ("predict an uncertain future event or explore a hypothetical situation") seems to give the model a clearer cue than the single word "speculation". My `statement` definition is broad ("make a claim, express a judgment..."), and emotional comments like "What a series, wow" also express a judgment. So with definitions, `statement` swallows `reaction`. This is the same overlap I noticed in Milestone 1, and it suggests my `reaction` and `statement` definitions need a clearer boundary.
 
 ---
 

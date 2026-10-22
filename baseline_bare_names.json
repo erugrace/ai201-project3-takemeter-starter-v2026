@@ -1,0 +1,184 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": false,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.5666666666666667,
+    "f1_macro": 0.40307971014492755,
+    "per_label": {
+      "reaction": {
+        "precision": 0.42857142857142855,
+        "recall": 0.6666666666666666,
+        "f1": 0.5217391304347826,
+        "support": 9
+      },
+      "speculation": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      },
+      "statement": {
+        "precision": 0.6875,
+        "recall": 0.6875,
+        "f1": 0.6875,
+        "support": 16
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "I think Kobe would've been proud of him",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "He\u2019s so good",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "You call that a fight? I call it two guys hugging.",
+      "gold": "statement",
+      "predicted": "reaction"
+    },
+    {
+      "text": "What a series, wow. I love basketball so much",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "THANK YOU FOR YOUR ATTENTION TO THIS MATTER lol \ud83e\udd23",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "How do you think Kyrie feels that LeBron is parenting these new kids and left him all alone in Dallas",
+      "gold": "speculation",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Jordan\u2019s entire life is hard to replicate. I\u2019ll say the 6 fmvps",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "It\u2019s unfortunate we have to add \u201cno glaze\u201d when speaking highly of someone",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "This shit is really fucking funny.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Austin Reaves coming back was huge for the Rockets!",
+      "gold": "statement",
+      "predicted": "reaction"
+    },
+    {
+      "text": "THEY ARE ALL BAD DEFENDERS",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "I didn't think his steph curry impression was gonna be the way he got his global superstar status but go off i guess",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Well Kd ain\u2019t either idk what the rockets even do atp",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "You just gotta blow it up if you're Houston. This core is nowhere near good enough",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Yall said trade lebron right? ",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Rockets may blow game 6 when people think they gonna win it lol",
+      "gold": "speculation",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I dont think ive ever seen a team get their score TRIPLED like this. Let alone a home elimination game.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "I\u2019ve been so impressed with Kennard, lakers give him whatever he wants",
+      "gold": "statement",
+      "predicted": "reaction"
+    },
+    {
+      "text": "The penalty for unsportsmanlike conduct should include a 30 second interpretive dance describing how sorry they are for the offense, performed at center court.",
+      "gold": "speculation",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I asked my mom what she wanted for Mother\u2019s Day this year. She said \u201cnot a thing, son. But a Knicks sweep would be great.\u201d Well mom, BING BONG!",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I love this one.",
+      "gold": "reaction",
+      "predicted": "statement"
+    },
+    {
+      "text": "We gotta stop acting like Julius Randle was a difference maker as a \u201cbig\u201d",
+      "gold": "statement",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I rarely ever see this debate to be honest. Obviously PPG is the better indicator of scoring ability, it shouldn\u2019t even need to be said.",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Look at curry man...",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "\"2nd Intermission\" \ud83d\ude2d\ud83d\ude2d\ud83d\ude2d",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "A 65 game limit looks ideal with the exception of a player playing less than 65 (let's say only 60) but still scored so many points that if he scored 0 points in the 5 games, he'd still be the ppg leader.",
+      "gold": "speculation",
+      "predicted": "statement"
+    },
+    {
+      "text": "It was looking rough for Mike Brown and Bridges after that second Hawks win, but it\u2019s been smooth sailing since with both stepping up. ",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Most played 82 games back in the day, it was just much easier to do",
+      "gold": "statement",
+      "predicted": "statement"
+    },
+    {
+      "text": "Why the Hawks commentators hating so bad?",
+      "gold": "statement",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I really enjoyed the Castle desperation flop there at the very end.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    }
+  ]
+}
