@@ -290,28 +290,39 @@ My `speculation` definition ("predict an uncertain future event or explore a hyp
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy |  | 0.533 | 0.533 | 0.533 |  |
+| 2. Per-label F1 (`statement` / `reaction` / `speculation`) |  | 0.696 / 0.000 / 0.000 | 0.696 / 0.000 / 0.000 | 0.696 / 0.000 / 0.000 |  |
+| 3. Dataset balance (largest label share) |  | 54% `statement` | 54% `statement` | 54% `statement` |  |
+| 4. Human labelling agreement |  | — (agreement report) | — (agreement report) | — (agreement report) |  |
+| 5. Prediction confidence (average confidence) |  | 0.48 | 0.47 | 0.49 |  |
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.533 | 0.533 | 0.533 | 0.000 |
+| Macro F1 | 0.232 | 0.232 | 0.232 | 0.000 |
+| F1 — `statement` | 0.696 | 0.696 | 0.696 | 0.000 |
+| F1 — `reaction` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `speculation` | 0.000 | 0.000 | 0.000 | 0.000 |
+
+**The spread:** accuracy moved 0.000 across the three seeds. The results are identical, but not because the model is reliable: every seed predicted `statement` for all 30 test posts, so every seed scores exactly the share of statements in the test set (16/30).
 
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | statement | reaction | speculation |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **statement** | 16 | 0 | 0 |
+| **reaction** | 9 | 0 | 0 |
+| **speculation** | 5 | 0 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
 
+9 real `reaction` posts were called `statement`, and 0 went the other way: the model never learned the `reaction`/`statement` boundary and defaults every post to `statement`, my most common label.
 
 
 ---
