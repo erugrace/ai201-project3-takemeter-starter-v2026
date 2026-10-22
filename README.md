@@ -2,58 +2,39 @@
 
 > ### 👋 Start here
 >
-> **New to this repo? Read [RUNNING.md](RUNNING.md) first** — setup, the
-> notebook, the baseline, and what to do when something breaks.
+> **New to this repo? Read [RUNNING.md](RUNNING.md) first** — setup, the notebook, the baseline, and what to do when something breaks.
 >
 > Once `python test.py` passes:
 >
 > ```bash
-> head -5 data/practice_labels.csv     # the shape your labels.csv needs
+> head -5 data/practice_labels.csv
 > ```
 >
-> Then open `takemeter.ipynb` **in this folder** — in VS Code, or with
-> `jupyter notebook` if you prefer. Pick the kernel: the `.venv` inside this
-> project. Run section 1, which reports the hardware you'll be training on.
-> Everything else waits until you have data.
+> Then open `takemeter.ipynb` in this folder using VS Code or Jupyter Notebook. Select the `.venv` kernel inside the project and run the notebook sections in order.
 >
-> Nothing to upload, nothing to connect, no accounts and no keys. The notebook
-> runs on your machine and writes next to your code.
->
-> **The rest of this file is your submission.** Fill it in as you go.
+> Everything runs locally on my machine. No API keys or external accounts are required for training.
 
 ---
 
-<!-- ─────────────────────────────────────────────────────────────────────────
-     HOW TO USE THIS FILE
-
-     Unit 5 asks for the first five sections. Unit 6 adds the five below them.
-
-     Everything is pasted as TEXT. No screenshots, no images.
-
-     ⚠️ The confusion matrix especially. The notebook prints one as a markdown
-     table, ready to copy. A screenshot of a matrix earns nothing. Paste the
-     table.
-     ───────────────────────────────────────────────────────────────────────── -->
-
-<!-- ═══════════════════════ UNIT 5 — THE BUILD ═══════════════════════ -->
-
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
+TakeMeter is a text classification project that uses machine learning to identify different types of comments from Reddit's r/nba community.
 
+The model classifies comments into three categories: `statement`, `reaction`, and `speculation`. I collected and labeled 200 Reddit comments and used them to fine-tune a DistilBERT model.
 
+The goal is to see how well the model can recognize the main purpose of a comment, even when different categories overlap.
 
 ---
 
 ## Milestone 1: Community Exploration
 
 ### Selected Community
+
 **r/nba — Reddit's NBA Community**
 
 I chose r/nba because it is an active community where people discuss basketball games, players, team performances, and other NBA-related topics.
 
-For this project, I will focus on Reddit comments rather than the main posts because comments contain different forms of communication, including opinions, reactions, predictions, and suggestions.
+For this project, I focused on Reddit comments rather than the main posts because comments contain different forms of communication, including opinions, reactions, predictions, and suggestions.
 
 ### Observations
 
@@ -73,144 +54,170 @@ One challenge I noticed was that some comments could fit more than one category.
 
 Another observation was that questions do not always seek information. Some commenters use questions to criticize or challenge another person's argument.
 
-These observations will help me design clearer classification labels and decision rules in Milestone 2.
+These observations helped me design clearer classification labels and decision rules in Milestone 2.
+
+---
 
 ## Label Taxonomy
-
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
-
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
 ### statement
 
 **Definition:**
+
 A comment whose main purpose is to make a claim, express a judgment or recommendation, or describe a current or past situation.
+
 **Example 1:**
->Nuggets way too low
+
+> Nuggets way too low
+
 **Example 2:**
->He's focused and has been practicing his shot all summer.
+
+> He's focused and has been practicing his shot all summer.
 
 ### reaction
 
 **Definition:**
+
 A comment whose main purpose is to express an immediate feeling, such as excitement, frustration, surprise, or amusement.
 
 **Example 1:**
->Fantastic
+
+> Fantastic
 
 **Example 2:**
->Fuck I just wanna see a healthy Steph for another season man"
+
+> Fuck I just wanna see a healthy Steph for another season man
 
 ### speculation
 
 **Definition:**
+
 A comment whose main purpose is to predict an uncertain future event or explore a hypothetical situation.
+
 **Example 1:**
->Lamelo ball will guide the wolves to the promised land"
+
+> LaMelo Ball will guide the Wolves to the promised land
 
 **Example 2:**
->Got me thinking, if Bronny had a kid this year, would LeBron be the first active NBA grandpa?"
 
+> Got me thinking, if Bronny had a kid this year, would LeBron be the first active NBA grandpa?
 
-### The hardest boundary
+### The Hardest Boundary
 
 **Which two labels:**
-Statement vs. Speculation 
-**The decision rule I used every time:**
-When a comment expresses an opinion about what someone should do, I will classify it as statement. However, if the comment predicts what might happen in the future or discusses a hypothetical situation, I will classify it as speculation, even if it contains a personal opinion.
 
+Statement vs. Speculation
+
+**The decision rule I used every time:**
+
+When a comment expresses an opinion about what someone should do, I will classify it as `statement`. However, if the comment predicts what might happen in the future or discusses a hypothetical situation, I will classify it as `speculation`, even if it contains a personal opinion.
+
+### Taxonomy Stress Test
+
+I tested my three labels against eight borderline comments to see how consistently they could be applied.
+
+One of the main challenges was distinguishing opinions about future actions from actual predictions.
+
+To address this, I decided that recommendations about what someone should do belong under `statement`, while predictions and hypothetical situations belong under `speculation`.
 
 ---
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
-
 **Where the posts came from:**
-n
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+
+I collected 200 public comments from different discussions in the r/nba subreddit. These discussions included player performances, team rankings, game results, and predictions about future games.
+
+**How I labelled them:**
+
+I started by labeling the first 20 comments and recording them as `cold` examples. For the remaining 180 comments, I used ChatGPT to suggest labels and identify borderline cases.
+
+I then reviewed the suggested labels and made corrections where necessary. I classified each comment according to its main purpose rather than focusing only on individual words.
 
 **Counts per label:**
 
 | Label | Count | Share |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+|---|---:|---:|
+| statement | 108 | 54% |
+| reaction | 60 | 30% |
+| speculation | 32 | 16% |
+| **Total** | **200** | **100%** |
 
-**Three hard cases**
+No label exceeds the required 70% limit.
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
+### Three Hard Cases
 
 **1.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+
+**The post:**
+
+> We’re winning 4 games this season! WOOOOO
+
+**Could have been:** Reaction or Speculation
+
+**I chose:** Speculation, because the comment predicts how many games the team will win in the future, even though the person expresses excitement.
 
 **2.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+
+**The post:**
+
+> There should be a mercy rule at this point
+
+**Could have been:** Statement or Speculation
+
+**I chose:** Speculation in my reviewed dataset. However, based on my decision rule, this should be reconsidered as `statement` because it recommends a rule change rather than predicting an outcome.
 
 **3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+
+**The post:**
+
+> I think Kobe would've been proud of him
+
+**Could have been:** Statement or Speculation
+
+**I chose:** Speculation because the comment imagines how Kobe might have felt in a hypothetical situation.
 
 ---
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
-
 **Base model:**
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+`distilbert-base-uncased` — DistilBERT for sequence classification.
+
+**Settings:**
+
+| Setting | Value |
+|---|---|
+| Epochs | 3 |
+| Learning rate | `2e-5` |
+| Batch size | 16 |
+| Maximum tokens per comment | 128 |
+| Seed | [Enter seed from Section 2] |
+| Training device | MPS (Apple Silicon GPU) |
 
 **Anything I changed from the defaults, and why:**
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+I kept the default training settings for my first run. I configured the label map to match the three categories in my dataset: `statement`, `reaction`, and `speculation`.
 
+**Split sizes:**
 
+| Label | Train | Validation | Test |
+|---|---:|---:|---:|
+| statement | 75 | 17 | 16 |
+| reaction | 42 | 9 | 9 |
+| speculation | 22 | 5 | 5 |
+| **Total** | **139** | **31** | **30** |
 
----
+The test set contained only five `speculation` examples. This means that its evaluation metrics may change significantly between training runs because even one incorrect prediction can make a noticeable difference.
 
-## How I Used AI
+### Initial Training Results
 
-<!-- Two specific moments — what you asked, what came back, what you changed.
+The model completed three epochs and achieved the following results on the held-out test set:
 
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
-
-**Moment 1**
-
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
-
-**Moment 2**
-
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
-
-**Pre-labelling disclosure:**
+| Metric | Result |
+|---|---:|
+| Overall accuracy | 53
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
