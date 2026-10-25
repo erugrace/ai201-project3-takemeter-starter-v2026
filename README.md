@@ -475,13 +475,28 @@ My criterion 2 diagnosis found that the model barely trained. Validation accurac
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
+**Criterion 2 (every label F1 ≥ 0.60): still missed because `speculation` is 0.000 on every seed.**
 
+- **What I'd do:** add about 30 more `speculation` posts, labelled with the same care as the first batch. Training for 10 epochs fixed `reaction` but not `speculation`, which rules out "not enough training" for this label and leaves the other cause from my diagnosis: only 22 training examples.
+- **Why I stopped:** the improvement step allows only one change, and my diagnosis pointed first at training, so I used that change on the epochs.
+
+**Criterion 1 (overall accuracy ≥ 0.70): still missed because only seed 42 cleared it (0.733, 0.567, 0.667).**
+
+- **What I'd do:** the same fix as criterion 2. The model calls every `speculation` post something else, so those 5 test posts are always wrong; learning `speculation` would lift accuracy directly. A larger test set would also reduce the 0.167 swing between seeds, which comes from scoring on only 30 posts.
+- **Why I stopped:** the same reason. Only one change was allowed, and I used it on the epochs.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
+I meant my labels to capture three different purposes for a comment: making a claim (`statement`), expressing a feeling (`reaction`), and predicting or imagining something (`speculation`). The model only learned to separate emotional comments from everything else: after retraining it got 7 of 9 reactions right, but it called all 5 speculation posts `statement`, so it never learned that a claim about the future is different from a claim about now.
 
+---
+
+## How I Used AI
+
+Unit 5: ChatGPT suggested labels for 180 of your 200 comments. You reviewed and corrected them.
+Claude Code explained each milestone's instructions, and you did the labelling and ran the notebook. It set up the blank my_staff_labels.csv, and you labelled all 30 posts yourself.
 
 <!-- ═════════════════════════════════════════════════════════════════════
 
