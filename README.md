@@ -290,11 +290,11 @@ My `speculation` definition ("predict an uncertain future event or explore a hyp
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1. Overall accuracy |  | 0.533 | 0.533 | 0.533 |  |
-| 2. Per-label F1 (`statement` / `reaction` / `speculation`) |  | 0.696 / 0.000 / 0.000 | 0.696 / 0.000 / 0.000 | 0.696 / 0.000 / 0.000 |  |
-| 3. Dataset balance (largest label share) |  | 54% `statement` | 54% `statement` | 54% `statement` |  |
-| 4. Human labelling agreement |  | — (agreement report) | — (agreement report) | — (agreement report) |  |
-| 5. Prediction confidence (average confidence) |  | 0.48 | 0.47 | 0.49 |  |
+| 1. Overall accuracy | ≥ 0.70 | 0.533 | 0.533 | 0.533 | MISSED |
+| 2. Per-label F1 (`statement` / `reaction` / `speculation`) | ≥ 0.60 for every label | 0.696 / 0.000 / 0.000 | 0.696 / 0.000 / 0.000 | 0.696 / 0.000 / 0.000 | MISSED |
+| 3. Dataset balance (largest label share) | ≤ 70% | 54% `statement` | 54% `statement` | 54% `statement` | MET |
+| 4. Human labelling agreement | ≥ 80% | Not measured | Not measured | Not measured | NOT MEASURED |
+| 5. Prediction confidence (average confidence) | ≥ 80% correct when confidence ≥ 0.80 | 0.48 | 0.47 | 0.49 | NOT EVALUATED |
 
 | Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
 |---|---|---|---|---|
@@ -334,11 +334,11 @@ My `speculation` definition ("predict an uncertain future event or explore a hyp
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.70 | MISSED | 0.533 on all three seeds, well below 0.70. |
+| 2 | Every label F1 | ≥ 0.60 | MISSED | `statement` reached 0.696, but `reaction` and `speculation` were 0.000 on all three seeds. |
+| 3 | Dataset balance | No label above 70% | MET | `statement` is my largest label at 108 of 200 (54%). This describes the dataset, so it is the same for every seed. |
+| 4 | Human labelling agreement | ≥ 80% of 30 of my comments | NOT MEASURED | No second person labelled my own r/nba comments under my definitions, so there is no rate to compare. The closest evidence is my 100% agreement with staff on their 30 running posts, but that tests whether I can apply someone else's rules, not whether my own rules are clear enough for two people to agree. |
+| 5 | Prediction confidence | ≥ 80% correct among predictions with confidence ≥ 0.80 | NOT EVALUATED | My criterion said to report it this way if too few predictions qualified. Average confidence was only 0.47–0.49 on every seed, so few if any predictions reached 0.80. The notebook doesn't record each post's confidence, so I can't count them exactly. |
 
 **Diagnoses**
 
@@ -350,6 +350,23 @@ My `speculation` definition ("predict an uncertain future event or explore a hyp
      ⚠️ Use your agreement report as evidence. It is the only instrument you
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
+
+**Criterion 2 missed: `reaction` and `speculation` have an F1 of 0.000 on all three seeds.**
+
+The confusion matrix shows where those posts went: all 9 `reaction` posts and all 5 `speculation` posts were predicted as `statement`, and nothing was ever predicted as anything else. The model didn't confuse one boundary. It never left the majority label.
+
+**Cause: a task the model can't reach from this much data and training, made worse by too few `speculation` examples.** Here is how I know:
+
+- **It's not my labelling.** My agreement report found 30/30 agreement with staff and no pile-(a) disagreements, so I have no evidence of applying a written rule two different ways. If my training labels were inconsistent, I'd expect the model to learn *something* and confuse one particular pair. Instead it learned nothing beyond "guess `statement`".
+- **The labels can be told apart from the text.** The zero-shot baseline, which never saw my data, caught 2 of the 5 `speculation` posts using my definitions, and 6 of the 9 `reaction` posts using bare label names. So these labels aren't an impossibly hard pair. A model that learned anything would score above 0.
+- **The model barely trained.** In the training logs, validation accuracy is exactly 0.548 at every epoch on every seed. That is 17/31, the share of statements in the validation set, so the model was guessing `statement` from the first epoch and never moved. Training loss only fell from about 1.07 to 0.96. With 139 training posts, batch size 16 and 3 epochs, the model got about 27 weight updates, which wasn't enough to move off the majority label.
+- **`speculation` has very few examples.** Only 22 training posts and 5 test posts. Even a model that trained properly would have very little to learn this label from, and its F1 would swing a lot with each mistake.
+
+One caveat: my agreement report tested the staff rules, not my own. My own `statement` vs. `speculation` boundary has at least one post I labelled against my own rule (*"There should be a mercy rule at this point"*), so some inconsistency in my own labels is possible. It can't explain a model that predicts `statement` for every post, though.
+
+**Criterion 1 missed: overall accuracy is 0.533 on all three seeds.**
+
+This follows directly from the criterion 2 miss. Because the model predicts `statement` for all 30 test posts, its accuracy is exactly the share of statements in the test set: 16/30 = 0.533. The cause is the same: the model never learned to separate the labels, so the accuracy only reflects how common `statement` is. That is also why all three seeds gave identical numbers.
 
 
 
