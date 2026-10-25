@@ -422,22 +422,50 @@ With no disagreements there is no pile (a): I didn't apply a written rule two di
 
 **What I changed:**
 
+I raised the number of training epochs from 3 to 10 (`EPOCHS = 10` in section 2 of the notebook). Nothing else changed: same data, same learning rate (2e-5), same batch size (16), same three seeds.
+
 **Which diagnosis pointed at it:**
+
+My criterion 2 diagnosis found that the model barely trained. Validation accuracy was stuck at 0.548 (the share of statements) at every epoch on every seed, and with 3 epochs the model only got about 27 weight updates. Going to 10 epochs gives it about 90 updates, more than three times as many, to move off the majority label.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 | 0.733 | 0.567 | 0.667 | MISSED |
+| 2. Per-label F1 (`statement` / `reaction` / `speculation`) | ≥ 0.60 for every label | 0.789 / 0.824 / 0.000 | 0.667 / 0.526 / 0.000 | 0.727 / 0.727 / 0.000 | MISSED |
+| 3. Dataset balance (largest label share) | ≤ 70% | 54% `statement` | 54% `statement` | 54% `statement` | MET |
+| 4. Human labelling agreement | ≥ 80% | Not measured | Not measured | Not measured | NOT MEASURED |
+| 5. Prediction confidence (average confidence) | ≥ 80% correct when confidence ≥ 0.80 | 0.62 | 0.66 | 0.69 | NOT EVALUATED |
+
+**Confusion matrix after (seed 42):**
+
+| true \ predicted | statement | reaction | speculation |
+|---|---|---|---|
+| **statement** | 15 | 1 | 0 |
+| **reaction** | 2 | 7 | 0 |
+| **speculation** | 5 | 0 | 0 |
 
 **Did it help, and how do I know:**
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
+
+| Measure | Before (seed 42 / 7 / 2024) | After (seed 42 / 7 / 2024) |
+|---|---|---|
+| Overall accuracy | 0.533 / 0.533 / 0.533 | 0.733 / 0.567 / 0.667 |
+| Macro F1 | 0.232 / 0.232 / 0.232 | 0.538 / 0.398 / 0.485 |
+| F1 — `statement` | 0.696 / 0.696 / 0.696 | 0.789 / 0.667 / 0.727 |
+| F1 — `reaction` | 0.000 / 0.000 / 0.000 | 0.824 / 0.526 / 0.727 |
+| F1 — `speculation` | 0.000 / 0.000 / 0.000 | 0.000 / 0.000 / 0.000 |
+
+**Yes, it helped, but only partly, and it didn't change any verdict.**
+
+- **`reaction` was learned.** Its F1 went from 0.000 on every seed to 0.53–0.82. In the seed 42 matrix, 7 of the 9 reactions are now correct, where before all 9 went to `statement`. This confirms the diagnosis: the model hadn't trained long enough to move off the majority label.
+- **Accuracy rose on every seed**, from 0.533 to 0.567–0.733. Seed 42 (0.733) cleared the 0.70 target, but seeds 7 and 2024 didn't, so criterion 1 is still MISSED.
+- **`speculation` is still 0.000 on every seed.** All 5 speculation posts were called `statement` in seed 42, and the model never predicted `speculation` at all on any seed. More training didn't fix this label, which points to my other diagnosis: only 22 training examples. Because of this, criterion 2 is still MISSED.
+- **The results are now unstable.** Accuracy moves 0.167 across seeds (0.567 to 0.733), more than the 10-point line from Milestone 2. Before, the spread was 0.000 only because every seed made the same majority guess. Now that the model is actually learning, the small test set (30 posts, only 5 speculation) makes the scores swing a lot between seeds.
+- **Criterion 5 still can't be evaluated.** Average confidence rose from 0.47–0.49 to 0.62–0.69, so some predictions may now reach 0.80, but the notebook doesn't record each post's confidence, so I can't count them.
 
 
 
