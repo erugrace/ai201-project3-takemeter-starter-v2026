@@ -363,7 +363,7 @@ My `speculation` definition ("predict an uncertain future event or explore a hyp
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 30 / 30 = 100%
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -385,25 +385,17 @@ My `speculation` definition ("predict an uncertain future event or explore a hyp
      written rule two different ways on 30 posts, that is direct evidence about
      what you did across your own 200. -->
 
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+None. I matched staff on all 30 posts, so there was nothing to adjudicate.
 
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+**Was the set easy, or are the rules tight?** Mostly the set was easy. Each post leans clearly one way: the analysis posts are built around a measurement the writer took, the hot takes are one-line general claims, and the reactions are first-person accounts of something that just happened. The few posts that could have tripped me up were the ones the rules address directly, so on those the rules were tight:
+
+- *"Times are down about 3% since the shoe rules changed, so obviously the shoes are the whole story..."* contains a statistic, but it is almost word for word the `hot_take` example under Rule 1. The 3% decorates a conclusion the writer had already reached, so it is `hot_take`.
+- *"Ran the same loop in 4C and in 24C... 90 seconds slower in the heat"* is a personal experience, but Rule 3 says recency and personal experience don't outrank a checkable fact. The 90-second comparison carries the argument, so it is `analysis`.
+- *"Just realised the shoes I set every PB in this year are the ones I bought by accident in the wrong size"* mentions PBs and shoes, but it makes no argument. It reports what just happened to the writer (Rule 2), so it is `reaction`.
 
 **What the pattern in my disagreements tells me:**
+
+With no disagreements there is no pile (a): I didn't apply a written rule two different ways. That suggests I can apply a clear rule consistently when it comes with worked examples, which makes careless labelling a less likely explanation for my model predicting only `statement`. However, this exercise didn't test my own boundaries. My `statement` vs. `reaction` and `statement` vs. `speculation` boundaries have no worked examples like the staff rules do, and I already found one post in my own data that I labelled against my own decision rule (*"There should be a mercy rule at this point"*, labelled `speculation` instead of `statement`). The 100% here shows I can follow a tight rule. It doesn't show that my own rules are that tight.
 
 
 
